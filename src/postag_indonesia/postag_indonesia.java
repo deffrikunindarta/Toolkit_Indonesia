@@ -20,9 +20,9 @@ public class postag_indonesia{
     /**
      * @param args the command line arguments
      */
-    public static void test(String sentence)throws Exception {
+    public static  ArrayList<String> test(List<List<String>> sentence)throws Exception {
         // TODO code application logic here
-
+        System.out.println(sentence);
         int i = 0;
         
         Scanner s = new Scanner(new File("D:\\KULIAH\\KERJA_PRAKTEK\\train.01.tsv"));
@@ -70,19 +70,19 @@ public class postag_indonesia{
             }
             i= i+1;
         }
-        while (t.hasNextLine()){
-            list.add(t.nextLine());
-//            System.out.println(list.get(i));
-            String[] part = list.get(i).split("\t");
-
-            if (part.length==2){
-//                System.out.println(part[0]);
-//                System.out.println(part[1]);
-                testTag.add(part[1]);
-                testWord.add(part[0].toLowerCase());
-            }
-            i= i+1;
-        }
+//        while (t.hasNextLine()){
+//            list.add(t.nextLine());
+////            System.out.println(list.get(i));
+//            String[] part = list.get(i).split("\t");
+//
+//            if (part.length==2){
+////                System.out.println(part[0]);
+////                System.out.println(part[1]);
+//                testTag.add(part[1]);
+//                testWord.add(part[0].toLowerCase());
+//            }
+//            i= i+1;
+//        }
         mapTag = countFreq(listofTag);
         mapWordTag = countFreq(listofWordTag);
         predictedTag = baseline(testWord,mapTag,mapWordTag);
@@ -96,6 +96,7 @@ public class postag_indonesia{
         System.out.println(testTag);
 //        System.out.println(acry);
         System.out.println(testWord);
+        return predictedTag;
 
 
     }
